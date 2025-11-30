@@ -1,0 +1,58 @@
+#  .zsh_aliases
+
+# Aliases
+alias c="clear"
+
+alias vi="nvim"
+alias vim="nvim"
+
+alias ls="eza --icons"
+alias la="eza --icons -a"
+alias ll="eza --icons -la"
+
+alias grep="grep --color=auto"
+
+alias update="sudo apt update && sudo apt upgrade -y && sudo apt autoremove -y && sudo apt autoclean"
+
+# Navigation
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias ~="cd ~"
+alias back="cd -"
+
+# File Management
+alias rm="rm -i"
+alias cp="cp -i"
+alias mv="mv -i"
+alias mkcd='foo() { mkdir -p "$1"; cd "$1"; }; foo'
+
+# Storage
+alias dfh="df -h"                                                   # Disk Free in Human Readable format
+alias duh="du -h --max-depth=1"                                     # Disk Usage in Human Readable format
+
+# System
+alias top="btop"
+alias cpu="lscpu"
+
+# Network
+alias ip="ip -c"                                                    # IP command with colorized output
+alias ports="netstat -tulanp"                                       # List all listening ports
+alias myip="curl ifconfig.me"                                       # Get public IP address
+alias pingg="ping google.com"                                       # Network Testing
+
+# Docker
+alias dps="docker ps"                                               # Docker PS
+alias dpsa="docker ps -a"                                           # Docker PS All
+alias drm="docker rm $(docker ps -a -q)"                            # Docker Remove All Stopped Containers
+alias dclean="docker system prune -af"                              # Docker Clean All
+
+dockcup() {                                                         # Docker Compose Up                          
+    local file="${1:-docker-compose.yaml}"                          # Default to docker-compose.yaml if no argument is given
+    docker compose -f "$file" up -d
+}
+
+dockcdown() {                                                       # Docker Compose Down      
+    local file="${1:-docker-compose.yaml}"                          # Default to docker-compose.yaml if no argument is given
+    docker compose -f "$file" down
+}

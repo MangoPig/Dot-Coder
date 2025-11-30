@@ -1,0 +1,114 @@
+{
+	// Default Telemetry Off
+	"telemetry.telemetryLevel": "off",
+	"workbench.startupEditor": "none",
+	"workbench.iconTheme": "material-icon-theme",
+	"editor.fontSize": 16,
+	"editor.fontFamily": "'Geist Mono', 'FiraCode Nerd Font Mono', 'Roboto Mono', mono",
+	"editor.wordWrap": "on",
+	"workbench.editor.enablePreview": false,
+	"editor.bracketPairColorization.independentColorPoolPerBracketType": true,
+	"editor.codeActionsOnSave": {
+		"source.organizeImports": "explicit"
+	},
+	"editor.lineNumbers": "relative",
+	"editor.rename.enablePreview": false,
+	"editor.minimap.enabled": false,
+	"workbench.layoutControl.enabled": false,
+	"workbench.statusBar.visible": false,
+	"workbench.colorTheme": "Default Dark Modern",
+	"window.commandCenter": true,
+	"workbench.activityBar.location": "hidden",
+	"window.menuBarVisibility": "compact",
+
+	// Prettier Formatting Settings
+	"editor.formatOnSave": true,
+	"editor.defaultFormatter": "esbenp.prettier-vscode",
+	"prettier.enable": true,
+	"prettier.printWidth": 250,
+	"prettier.tabWidth": 4,
+	"prettier.useTabs": true,
+
+	// Language Specific
+	"[markdown]": {
+		"editor.defaultFormatter": "DavidAnson.vscode-markdownlint"
+	},
+
+	"[toml]": {
+		"editor.defaultFormatter": "tamasfe.even-better-toml"
+	},
+
+	"[go]": {
+		"editor.defaultFormatter": "golang.go"
+	},
+	"[scss]": {
+		"editor.defaultFormatter": "sibiraj-s.vscode-scss-formatter"
+	},
+	"[yaml]": {
+		"editor.defaultFormatter": "redhat.vscode-yaml"
+	},
+	"[rust]": {
+		"editor.defaultFormatter": "rust-lang.rust-analyzer"
+	},
+
+	// onSave Commands
+	"emeraldwalk.runonsave": {
+		"commands": [
+			{
+				"match": "\\.(rs|go|js|ts|jsx|tsx)$",
+				"cmd": "sed -i '1s|^// Path:.*$|// Path: ${relativeFile}|;t;1i // Path: ${relativeFile}\\n' \"${file}\""
+			},
+			{
+				"match": "\\.(css|scss)$",
+				"cmd": "sed -i '1s|^/\\* Path:.*$|/* Path: ${relativeFile} */|;t;1i /* Path: ${relativeFile} */\\n' \"${file}\""
+			}
+		]
+	},
+
+	"achilleshr.runonsave": {
+		"commands": [
+			{
+				"match": "\\.(rs|go|js|ts|jsx|tsx)$",
+				"cmd": "sed -i '1s|^// Path:.*$|// Path: ${relativeFile}|;t;1i // Path: ${relativeFile}\\n' \"${file}\""
+			},
+			{
+				"match": "\\.(css|scss)$",
+				"cmd": "sed -i '1s|^/\\* Path:.*$|/* Path: ${relativeFile} */|;t;1i /* Path: ${relativeFile} */\\n' \"${file}\""
+			}
+		]
+	},
+
+	// New Words
+	"cSpell.userWords": ["Ikigai", "millilitre"],
+	"git.autofetch": true,
+	"remote.autoForwardPortsSource": "hybrid",
+	"javascript.updateImportsOnFileMove.enabled": "always",
+	"git.enableSmartCommit": true,
+	"typescript.updateImportsOnFileMove.enabled": "always",
+	"editor.unicodeHighlight.ambiguousCharacters": false,
+	"github.copilot.enable": {
+		"*": true,
+		"plaintext": false,
+		"markdown": false,
+		"scminput": false
+	},
+	"remote.SSH.connectTimeout": 1800,
+	"git.confirmSync": false,
+	"yaml.validate": false,
+	"workbench.secondarySideBar.defaultVisibility": "hidden",
+	// "[dockercompose]": {
+	// 	"editor.insertSpaces": true,
+	// 	"editor.tabSize": 4,
+	// 	"editor.autoIndent": "advanced",
+	// 	"editor.quickSuggestions": {
+	// 		"other": true,
+	// 		"comments": false,
+	// 		"strings": true
+	// 	},
+	// 	"editor.defaultFormatter": "redhat.vscode-yaml"
+	// },
+	"[github-actions-workflow]": {
+		"editor.defaultFormatter": "redhat.vscode-yaml"
+	},
+	"git.openRepositoryInParentFolders": "always"
+}
