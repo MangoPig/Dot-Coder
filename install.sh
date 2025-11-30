@@ -1,8 +1,11 @@
 #!/bin/sh
 set -e
 
-# "stow ." tells stow to symlink everything in the current folder 
-# to the parent directory (Home), respecting existing folder structures.
+sudo rm -rf ~/.local/share/code-server/User
+mkdir -p ~/.local/share/code-server/User
+
+sudo rm -rf ~/.zshrc
+
 stow . 
 
 # Optional: Print success
