@@ -4,7 +4,6 @@ set -e
 rm -rf ~/.zshrc ~/.bashrc
 rm -rf ~/.local/share/code-server/User/settings.json
 
-stow -v -R . 
+stow -v -R -t ~ . 
 
-# Optional: Print success
 echo "Dotfiles stowed successfully!"
