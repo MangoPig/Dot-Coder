@@ -1,5 +1,23 @@
 #  .zshrc
 
+# Coder Specific
+# Get the GID of the docker socket
+if [ -S /var/run/docker.sock ]; then
+    DOCKER_GID=$(stat -c '%g' /var/run/docker.sock)
+    
+    # Check if we are physically in the group file (added by startup script)
+    # BUT not in the current shell session
+    if grep -q ":$DOCKER_GID:" /etc/group && ! id -G | grep -qw "$DOCKER_GID"; then
+        # Get the group name associated with that GID
+        DOCKER_GROUP=$(getent group "$DOCKER_GID" | cut -d: -f1)
+        
+        # Replace the current shell with a new one that has the group loaded
+        exec newgrp "$DOCKER_GROUP"
+    fi
+fi
+
+# Personal Zsh Configuration
+
 # Path to your Oh My Zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
@@ -59,18 +77,3 @@ else
 fi
 unset __conda_setup
 # <<< conda initialize <<<
-
-# Get the GID of the docker socket
-if [ -S /var/run/docker.sock ]; then
-    DOCKER_GID=$(stat -c '%g' /var/run/docker.sock)
-    
-    # Check if we are physically in the group file (added by startup script)
-    # BUT not in the current shell session
-    if grep -q ":$DOCKER_GID:" /etc/group && ! id -G | grep -qw "$DOCKER_GID"; then
-        # Get the group name associated with that GID
-        DOCKER_GROUP=$(getent group "$DOCKER_GID" | cut -d: -f1)
-        
-        # Replace the current shell with a new one that has the group loaded
-        exec newgrp "$DOCKER_GROUP"
-    fi
-fi
