@@ -1,12 +1,10 @@
 #!/bin/sh
 set -e
 
-sudo rm -rf ~/.local/share/code-server/User
-mkdir -p ~/.local/share/code-server/User
+rm -rf ~/.zshrc ~/.bashrc
+rm -rf ~/.local/share/code-server/User/settings.json
 
-sudo rm -rf ~/.zshrc
-
-stow . 
+stow -v -R . 
 
 # Optional: Print success
 echo "Dotfiles stowed successfully!"
